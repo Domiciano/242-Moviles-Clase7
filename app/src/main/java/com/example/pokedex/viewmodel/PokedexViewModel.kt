@@ -33,18 +33,16 @@ class PokedexViewModel(
 
     fun catchPokemon(id: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            try {
-
-
-                _pokemonState.value?.let {
-                    firebaseRepository.createPokemon(id, it)
-                    Log.e(">>>", "Enviado...")
-                }
-            }catch (e:Exception){
-                e.printStackTrace()
+            _pokemonState.value?.let {
+                firebaseRepository.createPokemon(id, it)
             }
         }
     }
 
+    fun listMyPokemon(id: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            var pokemonList = firebaseRepository.getAllPokemon(id)
+        }
+    }
 
 }

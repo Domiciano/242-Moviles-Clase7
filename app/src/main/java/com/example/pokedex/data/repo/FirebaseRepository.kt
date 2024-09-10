@@ -12,6 +12,7 @@ import com.example.pokedex.data.service.PokedexServiceImpl
 
 interface FirebaseRepository {
     suspend fun createPokemon(id: String, pokemon: Pokemon)
+    suspend fun getAllPokemon(id: String): List<Pokemon>
 }
 
 class FirebaseRepositoryImpl(
@@ -36,7 +37,19 @@ class FirebaseRepositoryImpl(
         firebaseService.createPokemon(
             id, pokemonDTO
         )
+    }
 
+    override suspend fun getAllPokemon(id: String): List<Pokemon> {
+        return firebaseService.getAllPokemon().map { dto ->
+            Pokemon(
+                dto.sprites.front_default,
+                dto.name,
+                "${dto.stats[1].base_stat}",
+                "${dto.stats[2].base_stat}",
+                "${dto.stats[5].base_stat}",
+                "${dto.stats[0].base_stat}"
+            )
+        }
     }
 
 }
