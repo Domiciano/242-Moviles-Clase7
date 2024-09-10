@@ -1,8 +1,9 @@
-package com.example.pokedex.repo
+package com.example.pokedex.data.repo
 
+import com.example.pokedex.data.util.RetrofitConfiguration
 import com.example.pokedex.domain.model.Pokemon
-import com.example.pokedex.service.PokedexService
-import com.example.pokedex.service.RetrofitConfiguration
+import com.example.pokedex.data.service.PokedexService
+import com.example.pokedex.data.service.PokedexServiceImpl
 
 interface PokemonRepository {
     suspend fun getPokemon(name: String): Pokemon

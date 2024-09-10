@@ -72,6 +72,11 @@ fun PokedexScreen(pokedexViewModel: PokedexViewModel = viewModel()) {
             }) {
                 Text(text = "Test")
             }
+            Button(onClick = {
+                pokedexViewModel.catchPokemon("A00123456")
+            }) {
+                Text(text = "Catch")
+            }
         }
     }
 }
